@@ -6,7 +6,7 @@ function Footer() {
   return (
     <FooterBase>
       <a href="https://www.alura.com.br/">
-        <img src={Logo} alt="Logo CarFlix" width="200px" />
+        <img src={Logo} alt="Logo CarFlix" width="120px" />
       </a>
       <p>
         Orgulhosamente criado durante a
