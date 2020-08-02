@@ -22,10 +22,9 @@ function CadastroCategoria(){
     }
 
     function handleChange(info){
-        const { getAttribute, value } = info.target;
         setValue(
-            getAttribute('name'), 
-            value
+            info.target.getAttribute('name'), 
+            info.target.value
         )
     }
 
