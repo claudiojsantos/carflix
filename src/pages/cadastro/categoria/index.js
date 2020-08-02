@@ -1,81 +1,84 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PageDefault from  '../../../components/PageDefault';
-import { Form, Button, Col } from 'react-bootstrap'
+import { Form, Button, Col } from 'react-bootstrap';
+import PageDefault from '../../../components/PageDefault';
 
-function CadastroCategoria(){
-    const [categorias, setCategorias] = useState(['teste']);
-    
-    const initialValues = {
-        name: '',
-        description: '',
-        color: '#000'
-    }
+function CadastroCategoria() {
+  const [categorias, setCategorias] = useState(['teste']);
 
-    const [values, setValues] = useState([initialValues]);
+  const initialValues = {
+    name: '',
+    description: '',
+    color: '#000',
+  };
 
-    function setValue(key, value) {
-        setValues({
-            ...values,
-            [key]: value,
-        })
-    }
+  const [values, setValues] = useState([initialValues]);
 
-    function handleChange(info){
-        setValue(
-            info.target.getAttribute('name'), 
-            info.target.value
-        )
-    }
+  function setValue(key, value) {
+    setValues({
+      ...values,
+      [key]: value,
+    });
+  }
 
-    return(
-        <>
-            <PageDefault>
-                <h1>Cadastro de Categorias: {values.nome}</h1>
+  function handleChange(info) {
+    setValue(
+      info.target.getAttribute('name'),
+      info.target.value,
+    );
+  }
 
-                <form onSubmit={function handleSubmit(event){
-                    event.preventDefault();
+  return (
+    <>
+      <PageDefault>
+        <h1>
+          Cadastro de Categorias:
+          {' '}
+          {values.nome}
+        </h1>
 
-                    setValues([
-                        ...categorias,
-                        values.name
-                    ])
-                }}>
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="FormGridCategory">
-                            <Form.Label>Categoria:</Form.Label>
-                            <Form.Control name="nome" placeholder="Categoria" value={values.name} onChange={handleChange} />
-                        </Form.Group>
+        <form onSubmit={function handleSubmit(event) {
+          event.preventDefault();
 
-                        <Form.Group as={Col} controlId="FormGridColor">
-                            <Form.Label>Cor:</Form.Label>
-                            <Form.Control name="cor" placeholder="Cor" type="color" value={values.color} onChange={handleChange} />
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
-                    <Form.Group as={Col} controlId="FormGridDescription">
-                            <Form.Label>Descrição:</Form.Label>
-                            <Form.Control name="descricao" as="textarea" placeholder="Descrição" rows="5" value={values.description} onChange={handleChange} />
-                        </Form.Group>
-                    </Form.Row>
+          setValues([
+            ...categorias,
+            values.name,
+          ]);
+        }}
+        >
+          <Form.Row>
+            <Form.Group as={Col} controlId="FormGridCategory">
+              <Form.Label>Categoria:</Form.Label>
+              <Form.Control name="nome" placeholder="Categoria" value={values.name} onChange={handleChange} />
+            </Form.Group>
 
-                    <Button variant="primary" type="Submit">Cadastrar</Button>
-                </form>
+            <Form.Group as={Col} controlId="FormGridColor">
+              <Form.Label>Cor:</Form.Label>
+              <Form.Control name="cor" placeholder="Cor" type="color" value={values.color} onChange={handleChange} />
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} controlId="FormGridDescription">
+              <Form.Label>Descrição:</Form.Label>
+              <Form.Control name="descricao" as="textarea" placeholder="Descrição" rows="5" value={values.description} onChange={handleChange} />
+            </Form.Group>
+          </Form.Row>
 
-                <ul>
-                    {categorias.map((categoria, index) => {
-                        return (
-                            <li key={`${categoria}${index}`}>
-                                {categoria.nome}
-                            </li>
-                        )
-                    })}
-                </ul>
+          <Button variant="primary" type="Submit">Cadastrar</Button>
+        </form>
 
-                <Link to='/'>Voltar</Link>
-            </PageDefault>
-        </>
-    )
+        <ul>
+          {categorias.map((categoria, index) => (
+            <li key={`${categoria}${index}`}>
+              {categoria.nome}
+            </li>
+          ))}
+        </ul>
+
+        <Link to="/">Voltar</Link>
+      </PageDefault>
+    </>
+  );
 }
 
 export default CadastroCategoria;
